@@ -1,0 +1,40 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+
+	<style>
+   		.text {
+		display: block;
+    		text-align:  center;
+   		}
+		
+  	</style>
+
+	<h1 class='text'>Служба рекрутинга для ордена Ситхов</h1>
+	
+	<div><a href='{% url 'sith-list' %}' class='text'>Для Ситхов</a> | <a href='{% url 'recruit-create' %}' class='text'>Для рекрутов</a></div>
+
+	<p>Список ситхов и их Рук Теней</p>
+
+	<ul>
+		{% for sith in sith_list1 %}
+
+		<li>Ситх {{ sith.0 }} - {{ sith.1 }} Рук Теней</li>
+
+		{% endfor %}
+
+	</ul>
+
+	<p>Список ситхов, имеющих более одной Руки Тени</p>
+
+	<ul>
+		{% for sith in sith_list2 %}
+
+		<li>Ситх {{ sith.0 }} - {{ sith.1 }} Рук Теней</li>
+
+		{% endfor %}
+
+	</ul>
+
+{% endblock %}
+

@@ -1,0 +1,25 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+
+	<h2>Рекрут: {{ recruit.name }}</a> --- Возраст: {{ recruit.age }} --- Планета: {{ recruit.planet }}</h2>
+
+	<h3>Результаты теста:</h3>
+
+	<ul>
+		{% for answer in answer_list %}
+
+		<li>{{ answer.question.text }} --- {{ answer.answer }}</li>
+		
+		{% endfor %}
+	</ul>
+
+	<form role="form" action="{% url 'hands' recruit.id %}" method="POST">
+	{% csrf_token %}
+
+  		<input type="submit" class="btn" value="Зачислить в Руки Тени" name="mybtn">
+
+	</form>
+
+{% endblock %}
+

@@ -1,0 +1,27 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+
+	<h2>Ситх: {{ sith.name }} -- Планета: {{ sith.planet }}</h2>
+
+	<p>Рекруты:</p>
+
+	{% if recruit_list %}
+
+	<ul>
+		{% for recruit in recruit_list %}
+
+		<li><a href='{{ recruit.get_absolute_url }}'>{{ recruit.name }}</a> --- Возраст: {{ recruit.age }} --- Планета: {{ recruit.planet }}</li>
+		
+		{% endfor %}
+	</ul>
+
+	{% else %}
+
+		<p>Нет свободных рекрутов</p>
+
+	{% endif %}
+
+
+{% endblock %}
+

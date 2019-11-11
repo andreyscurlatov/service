@@ -1,0 +1,24 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+
+	<h1>Список рекрутов</h1>
+
+	{% if recruit_list %}
+
+	<ul>
+		{% for recruit in recruit_list %}
+
+		<li><a href='{{ recruit.get_absolute_url }}'>{{ recruit.name }}</a> --- Возраст: {{ recruit.age }} --- Планета: {{ recruit.planet }}</li>
+		
+		{% endfor %}
+	</ul>
+
+	{% else %}
+
+		<p>Нет зарегистрированных рекрутов</p>
+
+	{% endif %}
+
+{% endblock %}
+

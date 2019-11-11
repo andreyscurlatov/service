@@ -1,0 +1,24 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+
+	<h1>Список ситхов</h1>
+
+	{% if sith_list %}
+
+	<ul>
+		{% for sith in sith_list %}
+
+		<li><a href='{{ sith.get_absolute_url }}'>{{ sith.name }}</a></li>
+		
+		{% endfor %}
+	</ul>
+
+	{% else %}
+
+		<p>Нет зарегистрированных ситхов</p>
+
+	{% endif %}
+
+{% endblock %}
+

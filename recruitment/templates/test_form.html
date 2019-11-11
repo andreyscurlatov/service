@@ -1,0 +1,18 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Тест</h1>
+
+	<form method='post' action=''>
+	{% csrf_token %}
+
+		
+			{{ form.as_p }}
+
+		
+
+		<input type='submit' value='Далее'>
+	</form>
+
+{% endblock %}
