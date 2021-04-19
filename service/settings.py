@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'recruitment.apps.RecruitmentConfig',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -122,12 +123,26 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Host for sending e-mail.
-EMAIL_HOST = 'localhost'
+EMAIL_HOST = 'smtp.mail.ru'
 
 # Port for sending e-mail.
-EMAIL_PORT = 1025
+EMAIL_PORT = 2525
 
 # Optional SMTP authentication information for EMAIL_HOST.
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
+EMAIL_HOST_USER = 'andreyscurlatov@mail.ru'
+EMAIL_HOST_PASSWORD = 'werter_1978'
+EMAIL_USE_TLS = True
+
+# REDIS related settings
+REDIS_HOST = 'localhost'
+REDIS_PORT = '6379'
+BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+
+CELERY_ROUTES = {
+    # -- HIGH PRIORITY QUEUE -- #
+    'recruitment.tasks.sendMail': {'queue': 'single'},
+    # -- LOW PRIORITY QUEUE -- #
+    'recruitment.tasks.sendPeriodicMail': {'queue': 'periodic'},
+}

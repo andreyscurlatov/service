@@ -1,9 +1,41 @@
-<html lang='ru'>
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html>
 <head>
-	{% block title %}<title>Local Library</title>{% endblock %}
-	<meta charset="utf-8" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Служба рекрутинга для ордена Ситхов</title>
+	{% bootstrap_css %}
+	{% bootstrap_javascript jquery='slim' %}
 </head>
 <body>
-	{% block content %}{% endblock %}
+	<div class="container-fluid">
+		<div class="row" style="height: 100vh">
+			<div class="col-2 navbar-container bg-dark border">
+				<nav class="navbar navbar-expand-lg navbar-dark">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbar">
+						<ul class="navbar-nav flex-column">
+							<li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Главная</a></li>			
+							<li class="nav-item"><a href="{% url 'sith-list' %}" class="nav-link">Для ситхов</a></li>
+							<li class="nav-item"><a href="{% url 'recruit-create' %}" class="nav-link">Для рекрутов</a></li>
+						</ul>	
+					</div>
+				</nav>
+			</div>			
+			<div class="col-10 content-container py-2 border bg-light">
+				<header class="mb-4">
+					<h1 class="text-center">Служба рекрутинга для ордена Ситхов</h1>
+				</header>
+				{% block content %}{% endblock %}
+				<footer class="fixed-bottom bg-info" style="bottom: 0; position: absolute;">
+					<p class="font-italic" style="text-align: center;">Все права защищены. 2019</p>
+				</footer>
+			</div>
+		</div>
+	</div>			
 </body>
 </html>

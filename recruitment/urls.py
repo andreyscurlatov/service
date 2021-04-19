@@ -22,17 +22,17 @@ urlpatterns = [
 
     path('',views.index,name='index'),
 
-    path('test/create/<int:pk>', views.TestCreate.as_view(), name='test-create'),
+    path('test/create/<int:pk_recruit>', views.TestCreate.as_view(), name='test-create'),
     path('test/result',TemplateView.as_view(template_name='test_result.html'), name='test-result'),
 
     path('sith/all',views.SithListView.as_view(),name='sith-list'),
     path('sith/<int:pk>',views.SithDetailView.as_view(),name='sith-detail'),
     path('sith/<int:pk>/notice',TemplateView.as_view(template_name='sith_notice.html'), name='sith-notice'),
 
-    path('recruit/create', views.RecruitCreate.as_view(), name='recruit-create'),
     path('recruit/all',views.RecruitListView.as_view(),name='recruit-list'),
-    path('recruit/<int:pk>',views.RecruitDetailView.as_view(),name='recruit-detail'),
+    path('recruit/<int:pk>', views.RecruitDetailView.as_view(), name='recruit-detail'),
+    path('recruit/create', views.RecruitCreate.as_view(), name='recruit-create'),
 
-    path('hands/<int:pk>', views.hands, name='hands'),
+    path('hands/<int:pk_sith>/<int:pk_recruit>', views.hands, name='hands'),
 
     ]

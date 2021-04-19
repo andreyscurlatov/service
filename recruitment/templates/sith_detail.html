@@ -1,17 +1,27 @@
 ﻿{% extends 'base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
 
-	<h2>Ситх: {{ sith.name }} -- Планета: {{ sith.planet }}</h2>
+	<h4>Ситх: {{ sith.name }} -- Планета: {{ sith.planet }}</h4>
 
-	<p>Рекруты:</p>
+	<h6 class="py-4">Свободные рекруты:</h6>
 
 	{% if recruit_list %}
 
 	<ul>
 		{% for recruit in recruit_list %}
 
-		<li><a href='{{ recruit.get_absolute_url }}'>{{ recruit.name }}</a> --- Возраст: {{ recruit.age }} --- Планета: {{ recruit.planet }}</li>
+		<li><a href="{{ recruit.get_absolute_url }}">{{ recruit.name }}</a> --- Возраст: {{ recruit.age }} --- Планета: {{ recruit.planet }}
+
+			<form action="{% url 'hands' sith.id recruit.id %}" method='post'>
+				{% csrf_token %}
+
+				{% buttons %}
+	       			<button type="submit" class="btn btn-primary">Зачислить в Руки Тени</button>
+    			{% endbuttons %}
+  			</form>
+		</li>
 		
 		{% endfor %}
 	</ul>
@@ -21,7 +31,6 @@
 		<p>Нет свободных рекрутов</p>
 
 	{% endif %}
-
 
 {% endblock %}
 

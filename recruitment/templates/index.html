@@ -1,36 +1,25 @@
 ﻿{% extends 'base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
-
-	<style>
-   		.text {
-		display: block;
-    		text-align:  center;
-   		}
 		
-  	</style>
+	<h4 class="bg-info text-light my-2">Список ситхов и их Рук Теней</h4>
 
-	<h1 class='text'>Служба рекрутинга для ордена Ситхов</h1>
-	
-	<div><a href='{% url 'sith-list' %}' class='text'>Для Ситхов</a> | <a href='{% url 'recruit-create' %}' class='text'>Для рекрутов</a></div>
-
-	<p>Список ситхов и их Рук Теней</p>
-
-	<ul>
+	<ul class="list-group list-group-flush font-italic">
 		{% for sith in sith_list1 %}
 
-		<li>Ситх {{ sith.0 }} - {{ sith.1 }} Рук Теней</li>
+		<li class="list-group-item list-group-item-dark">Ситх {{ sith.0 }} - {{ sith.1 }} Рук Теней</li>
 
 		{% endfor %}
 
 	</ul>
 
-	<p>Список ситхов, имеющих более одной Руки Тени</p>
+	<h4 class="bg-info text-light mt-2">Список ситхов, имеющих более одной Руки Тени</h4>
 
-	<ul>
+	<ul class="list-group list-group-flush font-italic">
 		{% for sith in sith_list2 %}
 
-		<li>Ситх {{ sith.0 }} - {{ sith.1 }} Рук Теней</li>
+		<li class="list-group-item list-group-item-dark">Ситх {{ sith.0 }} - {{ sith.1 }} Рук Теней</li>
 
 		{% endfor %}
 

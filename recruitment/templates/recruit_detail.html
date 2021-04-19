@@ -1,25 +1,29 @@
 ﻿{% extends 'base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
 
-	<h2>Рекрут: {{ recruit.name }}</a> --- Возраст: {{ recruit.age }} --- Планета: {{ recruit.planet }}</h2>
+	<h4>Рекрут: {{ recruit.name }}</a> --- Возраст: {{ recruit.age }} --- Планета: {{ recruit.planet }}</h4>
 
-	<h3>Результаты теста:</h3>
+	<h4>Результаты теста:</h4>
 
 	<ul>
 		{% for answer in answer_list %}
 
-		<li>{{ answer.question.text }} --- {{ answer.answer }}</li>
+			{% if answer.answer %}
+
+				<li>{{ answer.question.text }} --- Да</li>
+
+			{% else %}
+
+				<li>{{ answer.question.text }} --- Нет</li>
+
+			{% endif %}
 		
 		{% endfor %}
 	</ul>
 
-	<form role="form" action="{% url 'hands' recruit.id %}" method="POST">
-	{% csrf_token %}
-
-  		<input type="submit" class="btn" value="Зачислить в Руки Тени" name="mybtn">
-
-	</form>
-
+	<a href="{{ request.META.HTTP_REFERER }}" class="nav-link">Назад</a>
+	
 {% endblock %}
 
